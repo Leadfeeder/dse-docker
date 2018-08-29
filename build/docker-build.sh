@@ -12,7 +12,7 @@ fi
 . "`dirname $0`/DSE_VERSION"
 
 # Run the build
-docker build --build-arg DSE_VERSION=$DSE_VERSION --build-arg DSE_CREDENTIALS_URL=$DSE_CREDENTIALS_URL -t luketillman/datastax-enterprise:$DSE_VERSION .
+docker build --build-arg DSE_VERSION=$DSE_VERSION --build-arg DSE_CREDENTIALS_URL=$DSE_CREDENTIALS_URL -t leadfeeder/dse-docker:$DSE_VERSION-1 .
 
 # Output some image information after the build is finished
-docker images luketillman/datastax-enterprise
+docker images leadfeeder/dse-docker
