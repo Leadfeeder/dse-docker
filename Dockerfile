@@ -42,8 +42,8 @@ RUN set -x \
     && export DSE_TEMP="$(mktemp -d)" \
     && cd "$DSE_TEMP" \
     && curl -SLO "$DSE_CREDENTIALS_URL/.netrc" \
-    && curl --netrc-file .netrc -SLO "http://downloads.datastax.com/enterprise/dse-$DSE_VERSION-bin.tar.gz" \
-    && curl --netrc-file .netrc -SLO "http://downloads.datastax.com/enterprise/dse-$DSE_VERSION-bin.tar.gz.md5" \
+    && curl --netrc-file .netrc -SLO "https://downloads.datastax.com/enterprise/dse-$DSE_VERSION-bin.tar.gz" \
+    && curl --netrc-file .netrc -SLO "https://downloads.datastax.com/enterprise/dse-$DSE_VERSION-bin.tar.gz.md5" \
     && md5sum -c *.md5 \
     && tar -xzf "dse-$DSE_VERSION-bin.tar.gz" -C /opt \
     && cd / \
