@@ -8,7 +8,12 @@ fi
 
 # If we're running the dse command as root, run as the dse user
 if [ "$1" = 'dse' -a "$(id -u)" = '0' ]; then
-  chown -R dse /var/lib/cassandra /var/lib/spark /var/lib/dsefs /var/log/cassandra /var/log/spark /opt/dse/resources
+  if [ -n "$(ls -A /mnt/cassandra/conf 2>/dev/null)" ]; then
+    rm -R -f /opt/dse/resources/cassandra/conf/*
+    cp -r /mnt/cassandra/conf/. /opt/dse/resources/cassandra/conf/
+  fi
+
+  chown -R dse:dse /var/lib/cassandra /var/lib/spark /var/lib/dsefs /var/log/cassandra /var/log/spark /opt/dse/resources
   exec gosu dse "$BASH_SOURCE" "$@"
 fi
 
